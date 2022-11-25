@@ -1,0 +1,22 @@
+from GoogleNews import GoogleNews
+news = GoogleNews(period='1d')
+print("********************  Welcome to Trending News Page  ********************\n\n")
+print("Just enter a topic to read its latest news.........\n\n")
+tag=input("Please Enter the topic : ")
+print("\n\n")
+news.search(tag)
+result = news.result()
+import pandas as pd
+data = pd.DataFrame.from_dict(result)
+data = data.drop(columns=["img"])
+data.head()
+for i in result:
+    print("*****  Title  *****\n")
+    print(i["title"])
+    print("\n")
+    print("News : ", i["desc"])
+    print("\n")
+    print("***** Wanna see full article ***** ")
+    print("\nThen click the following link\n")
+    print(i["link"])
+    print("\n\n\n\n")
